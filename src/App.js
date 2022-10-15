@@ -10,19 +10,17 @@ function App() {
     setPageNumber(1)
   }
 
-  useBookSearch(query, pageNumber);
-  
+  const {loading, error, books, hasMore} = useBookSearch(query, pageNumber);
+
   return (
     <>
       <input type='text' onChange={handleSearch}/>
-      <div>Title</div>
-      <div>Title</div>
-      <div>Title</div>
-      <div>Title</div>
-      <div>Title</div>
+      {books.map(book => {
+        return <div key={book}>{book}</div>
+      })}
 
-      <div>Loading...</div>
-      <div>Error</div>
+      <div>{loading && 'Loading...'}</div>
+      <div>{error && 'Error'}</div>
     </>
   );
 }
