@@ -52,3 +52,18 @@ function App() {
 }
 
 export default App;
+
+
+/**
+ * Why we used hasMore??
+ * 
+ * Let say you seached "test" in input. and there are a total of 500 books with title test. In page 0 server returned you 100books. 
+ * 
+ * When you scroll to 100th book, another api request initiated to get 101 to 200th books.
+ * 
+ * Each time we get response, we're checking if res.data.docs.length is > 0 or not.
+ * 
+ * When user scrolled 5 times to last of page, 5 api request sent and all 500books with title 'test' will be consumed.
+ * 
+ * Hence we shouldn't update page number or send request to get next set of books.
+ */
